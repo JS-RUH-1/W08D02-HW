@@ -9,7 +9,7 @@
         3. nationality ==> type: String, required with message: "Author nationality should be provided"
         4. image ==> type: string, required with message: "Author image should be provided"
         5. gender  ==> type: string
-        6. books 
+        6. books ==> array of bookSchema 
 
     * book schema:
         1. title ==> type: string, required with message: "Book title should be provided"
@@ -21,6 +21,7 @@
     *  Write a command and run it ONCE for each model in app.js for example if we want to insert books from seed file: 
 
     ```
+    const Book = require("./models/bookAndAuthor").Book;
     const seedBook = require("./book_seed");
     Book.insertMany(seedBook, (err, books) => {
       if (err){ console.log(err)}
