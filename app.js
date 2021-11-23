@@ -24,8 +24,8 @@ const Book = require("./book");
 
 
 // Author.insertMany([
-//   { name: "Ali", age: 30, image: "https://img.com" },
-//   { name: "Ahmed", age: 35, image: "https://img.com" },
+//   { name: "Ali", age: 30,  nationality: "Saudi Arabia", image: "https://img.com" },
+//   { name: "Ahmed", age: 35, nationality: "Saudi Arabia", image: "https://img.com" },
 // ]);
 
 // Book.insertMany([
