@@ -22,11 +22,13 @@ Author.insertMany(seedAuthor, (err, authors) => {
 Author.insertMany([
     {name: "Emad",
     age: 27,
-    image:"https://someimg.com"
+    image:"https://someimg.com",
+    nationality: "Saudi Arabia"
     },
     {name: "Ahmed",
     age: 25,
-    image:"https://someimg.com"
+    image:"https://someimg.com",
+    nationality: "Kuwait"
     }
 ]);
 
