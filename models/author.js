@@ -1,4 +1,5 @@
 const { Schema, model } = require("mongoose");
+const Book = require('./book');
 
 module.exports = model('Author', new Schema({ 
     name: {
@@ -15,5 +16,5 @@ module.exports = model('Author', new Schema({
         required: [true, "Author image should be provided"]
     },
     gender: String,
-    books: Array
+    books: [Book.schema]
  }))
