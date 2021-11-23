@@ -52,9 +52,9 @@ do the same for Author with author_seed data
         1. Find all authors that in Kuwait or Saudi Arabia
         2. Find all authors that have 3 books or more and their age grater than 35
     * Select by exists or does not exist
-        1. do not have a key of age
+        1. Author do not have a key of age
     * Negative Selection
-        1. are not from Saudi Arabia
+        1. Author are not from Saudi Arabia
     * Update 
         1. Update Osama Al Muslim age to be 45
     * Remove
