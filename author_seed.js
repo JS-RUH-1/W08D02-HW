@@ -1,4 +1,3 @@
-var ObjectId = require("mongodb").ObjectID;
 module.exports = [
   {
     name: "Osama Al Muslim",
