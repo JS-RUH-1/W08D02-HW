@@ -1,11 +1,11 @@
 const mongoose = new require('mongoose'),
-
 {Schema} = mongoose
 
+const Book = require('./book')
 const Author = new Schema ({
-        name:{
-            type:String,
-            required: [true, "Author name should be provided"]
+    name:{
+        type:String,
+        required: [true, "Author name should be provided"]
         }, 
     age: Number,
 
@@ -18,7 +18,7 @@ const Author = new Schema ({
         required: [true, "Author image should be provided"]
     },
     gender: String,
-    books: Array
+    books:[Book.schema],
 })
 
 module.exports = mongoose.model('Author',Author);
