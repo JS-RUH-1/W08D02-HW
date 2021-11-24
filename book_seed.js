@@ -18,7 +18,7 @@ module.exports = [
     image: "https://www.jarir.com/cdn-cgi/image/fit=contain,width=400,height=400/https://www.jarir.com/media//catalog/product/5/6/568335.jpg?1"
   },
   {
-    title: "li'anak Allh",
+    title: "li'anak Allah",
     pages: 192,
     price: 17,
     image: "https://www.jarir.com/cdn-cgi/image/fit=contain,width=400,height=400/https://www.jarir.com/media//catalog/product/4/6/465531.jpg?1"
