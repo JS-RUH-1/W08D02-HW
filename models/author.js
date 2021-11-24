@@ -3,36 +3,32 @@ const mongoose = require('mongoose'),
 
 const AuthorSchema = new Schema({
 
-name:{
-    type:String,
-    required:"Author name should be provided"
-},
+        name:{
+            type:String,
+            required:"Author name should be provided"
+        },
+        age:{
+        type:Number,
+        },
 
-age:{
+        nationality:{
 
-type:Number,
-},
+        type:String,
+        required:"Author nationality should be provided"
+        },
 
-nationality:{
-type:String,
-required:"Author nationality should be provided"
-},
+        image:{
+        type:String,
+        required:"Author image should be provided"
+        },
+        gender:{
 
-// image:{
-// type:String,
-// required:"Author image should be provided"
-// },
-gender:{
-
-    type:String,
-},
+            type:String,
+        },
 
 // book:{
 
 // }
-
-
-
 })
 
 module.exports =mongoose.model("Author",AuthorSchema)

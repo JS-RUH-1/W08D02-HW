@@ -44,7 +44,7 @@ module.exports ={
                if(error) 
             res.json({error:error})
             else
-            res.json({message:"New Book onserted ."})
+            res.json({message:"New Book inserted ."})
            })         
 
     },
