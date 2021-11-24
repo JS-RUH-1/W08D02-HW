@@ -22,7 +22,8 @@ create:(req,res)=>{
                age:req.body.age,
         nationality:req.body.nationality,
               image:req.body.image,
-             gender:req.body.gender
+             gender:req.body.gender,
+             
 
     })
 newAuthor.save((error)=>{
