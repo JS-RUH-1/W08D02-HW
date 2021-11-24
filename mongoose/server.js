@@ -5,45 +5,14 @@ const PORT = 3001;
 const mongoose = require('mongoose');
 const seedBook = require("./book_seed");
 const seedAuthor = require("./author_seed");
+const BookSchema = require("./BookSchema");
+const AuthorSchema = require("./AuthorSchema");
 
 main().catch(err => console.log(err));
 
 async function main() {
   await mongoose.connect('mongodb://localhost:27017/test');
 }
-
-const BookSchema = new mongoose.Schema({
-  title:{
-    type: String,
-    required: [true, 'Book title should be provided']
-  },
-  image: {
-    type: String,
-    required: [true, 'Book image should be provided']
-  },
-  price: Number,
-  pages: {
-    type: Number,
-    required: [true, 'Book pages should be provided']
-  },
-});
-const AuthorSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: [true, 'Author name should be provided']
-  },
-  nationality: {
-    type: String,
-    required: [true, 'Author nationality should be provided']
-  },
-  image: {
-    type: String,
-    required: [true, 'Author image should be provided']
-  },
-  gender: String ,
-  books: [BookSchema],
-  age: Number,
-});
 
 const Author = mongoose.model('Author', AuthorSchema);
 const Book = mongoose.model('Book', BookSchema);
