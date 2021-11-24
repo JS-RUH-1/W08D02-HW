@@ -13,13 +13,15 @@ module.exports ={
             res.json({error: error})
         })
     },
+
+
     show:(req,res)=>{
         let userId = req.params.uid
         User.findById(userId)
         .then(user=>{
             res.json({user})
         })
-.catch(error =>{
+    .catch(error =>{
     res.json({error:error})
 })
     },
@@ -51,7 +53,23 @@ delete :(req,res)=>{
     .catch(error =>{
         res.json({error:error})
     })
-}
+},
+
+        create:(req,res)=>{
+        let newUser = new User({
+         name:req.body.name,
+          age:req.body.age,
+        email:req.body.email
+
+        })
+        newUser.save((error)=>{
+        if(error)
+         res.json({error :error})
+        else
+        res.json({message:"Post inserted .."})
+
+        })
+        }
 
 
 }
