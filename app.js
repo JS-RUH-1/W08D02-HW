@@ -13,28 +13,32 @@ Author.insertMany(seedAuthor, (err, authors) => {
 });
 
 Author.insertMany([
-    {name: "Author 1",
-    age: 27,
-    image:"<IMG LINK>",
-    nationality: "Saudi Arabia"
+    {
+        name: "Author 1",
+        age: 27,
+        image:"<IMG LINK>",
+        nationality: "Saudi Arabia"
     },
-    {name: "Ahmed",
-    age: 25,
-    image:"<IMG LINK>",
-    nationality: "Kuwait"
+    {
+        name: "Ahmed",
+        age: 25,
+        image:"<IMG LINK>",
+        nationality: "Kuwait"
     }
 ]);
 
 Book.insertMany([
-    {title: "example 1",
-    pages: 250,
-    price: 27,
-    image:"<IMG LINK>"
+    {
+        title: "example 1",
+        pages: 250,
+        price: 27,
+        image:"<IMG LINK>"
     },
-    {title: "example 2",
-    pages: 250,
-    price: 27,
-    image:"<IMG LINK>"
+    {
+        title: "example 2",
+        pages: 250,
+        price: 27,
+        image:"<IMG LINK>"
     }
 ]);
 Author.find({gender: "male"}, (err, authors) => {
