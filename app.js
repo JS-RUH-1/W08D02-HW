@@ -13,7 +13,7 @@ app.use(cors());
 
 main().catch(err => console.log(err));
 async function main(){
-    await mongoose.connect('mongodb+srv://admin:js-ruh2021@js.cj74d.mongodb.net/test?retryWrites=true&w=majority');
+    await mongoose.connect('mongodb+srv:// ...');
 
 }
 
