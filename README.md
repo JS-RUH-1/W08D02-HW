@@ -1,5 +1,7 @@
 ## W08D03 HW
 ### Library with mongoose
+![library](books.jpg)
+
 * Install mongoose 
 * Create app.js file and make the connection with mongoose
 * Create models folder that contain schema for author and book
