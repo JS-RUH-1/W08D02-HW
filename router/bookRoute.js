@@ -3,12 +3,12 @@ let router = express.Router();
 const mongoose = require('mongoose')
 const BookSchema = require('../bookSch')
 
-main().catch(err => console.log(err));
+// main().catch(err => console.log(err));
 
 //connect to db 
-async function main() {
-    await mongoose.connect('mongodb://localhost:27017/test');
-  }
+// async function main() {
+//     await mongoose.connect('mongodb://localhost:27017/test');
+//   }
 
 const Books = mongoose.model('Book',BookSchema);
 //get
@@ -17,6 +17,7 @@ router.get("/", (req, res) => {
         res.send(Books);
         });
 });
+
 
 //post
 router.post("/", (req, res) => {

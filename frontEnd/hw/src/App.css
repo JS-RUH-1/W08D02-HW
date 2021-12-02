@@ -4,8 +4,29 @@
   text-align: center;
   display:grid;
   grid-template-columns:1fr 1fr 1fr;
-  
- 
+}
+
+.author-card {
+  box-shadow: 5px 5px 20px; 
+  margin: 20px;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.author-card img {
+  box-shadow: 5px 5px 20px; 
+  margin: 20px;
+  border-radius: 50%;
+}
+
+.author-card button {
+  box-shadow: 5px 5px 20px; 
+  margin: 5px;
+  width: 120px;
+  background-color: #fff;
+  border-color: #fff;
 }
 
 .App-header {
@@ -47,4 +68,33 @@ input , button{
   padding:5px;
   border-radius: 25px;
 
+}
+
+.fullcard-container {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.author-card button:hover {
+  box-shadow: 5px 5px 20px; 
+  margin: 5px;
+  width: 120px;
+  background-color: #fff;
+  border-color: #fff;
+}
+.nav{
+  display: flex;
+  justify-content: space-around;
+  background-color: rgb(110, 104, 104);
+  height: 10vh;
+  margin: 0%;
+  align-items: center;
+}
+a{
+  text-decoration: none;
+}
+.Logout{ 
+  cursor: pointer;
 }

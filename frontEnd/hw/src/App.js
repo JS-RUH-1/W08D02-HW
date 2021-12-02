@@ -5,6 +5,10 @@ import { useParams , useNavigate} from 'react-router'
 import FullCard from './FullCard'
 import About from './About'
 import Home from './components/Home'
+import Signup from './components/Signup'
+import Login from './components/Login'
+import Logout from './components/Logout'
+import Nav from './components/Nav'
 
 
 function App() {
@@ -12,10 +16,15 @@ function App() {
 
   return (
     <div className="App">
+    <Nav/>
       <Routes>
-        <Route path="/" element={<Home />}></Route>
+        
+        <Route exact path="/" element={<Home />}></Route>
         <Route path="/about" element={<About />}></Route>
         <Route path="/FullCard/:id" element={<FullCard />}></Route>
+        <Route path="/signup" element={<Signup />}></Route>
+        <Route path="/login" element={<Login />}></Route>
+        <Route path="/Logout" element={<Logout />}></Route>
       </Routes>
     </div>
   );

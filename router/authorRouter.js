@@ -2,18 +2,59 @@
 const express = require("express");
 let router = express.Router();
 const mongoose = require('mongoose')
-const authoeSchema = require('../aoutherSch')
+const Author1 = require('../aoutherSch')
 const BookSchema = require('../bookSch')
+const jwt = require('jsonwebtoken')
+// const Author1 = require('../aoutherSch').Author
+// const Book = require('../aoutherSch').Book
+router.use(express.json())
 
-main().catch(err => console.log(err));
+
+// main().catch(err => console.log(err));
 
 //connect to db 
-async function main() {
-    await mongoose.connect('mongodb://localhost:27017/test');
+// async function main() {
+//     await mongoose.connect('mongodb://localhost:27017/test');
+//   }
+
+const Book = mongoose.model('Book',BookSchema);
+
+//handle errors
+const handleError = (err)=>{
+    
+    console.log(err.message, err.code);
+  let error = { email: '', password: '' };
+
+  //incorrect email
+  if (err.message === 'incorrect email') {
+    error.email = 'that email is not registered';
   }
 
-const Author1 = mongoose.model('Author',authoeSchema);
-const Book = mongoose.model('Book',BookSchema);
+    //incorrect password
+    if (err.message === 'incorrect password') {
+        error.password = 'that password is not correct';
+      }
+
+  // duplicate email error
+  if (err.code === 11000) {
+    error.email = 'that email is already registered';
+    return error;
+  }
+
+    //validate errors
+    if(err.message.includes("Author validation failed")){
+       Object.values(err.errors).forEach(({properties})=> {
+        error[properties.path] = properties.message;
+       })
+    }
+    return error;
+}
+const maxAge = 3 * 24 * 60 * 60;
+const createToken =(id)=>{
+    return jwt.sign({id}, 'masha aldossari secret',{
+        expiresIn:maxAge
+    });
+}
 
 //get
 router.get("/", (req, res) => {
@@ -30,18 +71,74 @@ router.get("/:id", (req, res) => {
      }) 
 
   });
+
+
+
+//post for signup
+router.post("/signup",async (req, res) => {
+    const {name,age,nationality,image,gender,email, password} = req.body;
+    try{
+      
+      const authorUser= await Author1.create({name,age,nationality,image,gender,email, password})
+      const token =createToken(authorUser._id)
+      res.cookie('jwt',token,{httpOnly:true , maxAge: maxAge * 1000})
+      res.status(201).json({authorUser : authorUser,token:token})
+    }
+    catch(err){
+      const error = handleError(err)
+
+        res.status(400).json(error)
+    }
+    //console.log(email, password)
+    //res.send('new signup');
+});
+
+//post for login
+router.post("/login", async(req, res) => {
+  const {email, password} = req.body;
+  try{
+
+    const authorUser= await Author1.login(email, password)
+    const token =createToken(authorUser._id)
+    res.cookie('jwt',token,{httpOnly:true , maxAge: maxAge * 1000})
+    res.status(200).json({authorUser : authorUser,token:token})
+  }
+  catch(err){
+      const errors = handleError(err);
+    res.status(400).json({errors})
+  }
+});
+
+//logout
+
+router.get("/logout", (req, res) => {
+   
+    res.cookie('jwt', '', { maxAge: 1 });
+    res.redirect('/');
+});
+
+
+
 //post
 
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
+    const author= new Author1({
+        name:req.body.name,
+        age:req.body.age,
+        nationality: req.body.nationality,
+        image:req.body.authorImage,
+        gender:req.body.gender
+    })
 
-    Author1.create(req.body, (err, data) => {
-        console.log(req.body)
-   
-        res.send("seved!");
-        });
-        // Author1.find({}, (err, authors) => {
-        //     res.send(authors);
-        //     });
+try{
+    await author.save()
+    const authors=await Author1.find()
+    res.status(201).send(authors)
+}
+catch(e){
+    console.error(e)
+}
+console.log("added")
        
 });
 
@@ -89,7 +186,6 @@ router.delete("/:id", (req, res) => {
 
         });
 });
-
 
 
 

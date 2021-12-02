@@ -9,9 +9,9 @@ app.use(express.json());
 main().catch(err => console.log(err));
 
 //connect to db 
-async function main() {
-    await mongoose.connect('mongodb://localhost:27017/test');
-  }
+// async function main() {
+//     await mongoose.connect('mongodb://localhost:27017/test');
+//   }
 
   const BookSchema = new mongoose.Schema({
     title:{ 
@@ -126,6 +126,6 @@ Books.insertMany([
 
 
 
-app.listen(PORT, ()=>{
-    console.log(`Connected to= http://localhost:${PORT}`)
-})
+// app.listen(PORT, ()=>{
+//     console.log(`Connected to= http://localhost:${PORT}`)
+// })

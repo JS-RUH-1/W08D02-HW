@@ -2,11 +2,25 @@ import React from "react";
 import { useParams, useNavigate } from "react-router";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import jwt_decode from "jwt-decode"
 import axios from "axios"
 
 export default function FullCard() {
   let { id } = useParams();
   let [author, setAuthor] = useState({});
+
+  let decodedData ;
+  const storedToken = localStorage.getItem("token");
+  if (storedToken){
+    decodedData = jwt_decode(storedToken, { payload: true });
+     console.log(decodedData);
+     let expirationDate = decodedData.exp;
+      var current_time = Date.now() / 1000;
+      if(expirationDate < current_time)
+      {
+          localStorage.removeItem("token");
+      }
+   }
 //   const dispatch = useDispatch();
 
   const state = useSelector((state) => {
@@ -14,14 +28,6 @@ export default function FullCard() {
       author: state.author.authors,
     };
   });
-
-  //عشان تطلع النتيجة بدون ريفريش
-//   const postMen = () => {
-//     axios.get("http://localhost:8080/authorRouter").then((res) => {
-//       setAuther(res.data);
-//       dispatch(addAuthors(res.data));
-//     });
-//   };
 
   useEffect(() => {
     setAuthor(state.author.find((x) => x._id === id));
@@ -43,7 +49,6 @@ export default function FullCard() {
       .then((res) => {
         console.log(res);
         setAuthor(res.data)
-        // postMen(); //عشان تطلع القيمة على طول بدون تحديث
       })
       .catch((error) => {
         console.log(error.response);
@@ -52,11 +57,12 @@ export default function FullCard() {
 
 
   return (
-    <div className="">
-      <div>
+    <div className="fullcard-container">
+      <div className="fullcard-container">
         <h1>{author.name}</h1>
         <img src={author.image}></img>
       </div>
+
       <div>
         <ul>
           <li>{author.age}</li>
@@ -67,25 +73,36 @@ export default function FullCard() {
 
       {author.books?.map((book, index) => (
         <div key={index}>
-          <h3>{book.title}</h3>
+          <h2>{book.title}</h2>
           <p>{book.pages}</p>
           <p>{book.price}</p>
           <img src={book.image} />
         </div>
       ))}
-
-      <form onSubmit={(e) => postMethod(e)}>
+ 
+ {(function(){
+   if(decodedData!=undefined){
+     console.log(decodedData)
+     console.log(decodedData.id)
+     console.log(id)
+     if(decodedData.id==id){
+       return(   
+         <form className="fullcard-container" onSubmit={(e) => postMethod(e)}>
         <input placeholder="book title" />
+        <br />
         <input placeholder="book pages" />
         <br />
         <input placeholder="book price" />
         <br />
         <input placeholder="book image" />
         <br />
-       {/* <input placeholder="author books"/><br/>  */}
         <button>Post book</button>
       </form>
-      <br />
+      )
+     }
+   }
+ })()}
+
     </div>
   );
 }
