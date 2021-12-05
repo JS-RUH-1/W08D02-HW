@@ -1,0 +1,32 @@
+.big{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.card{
+    border:  solid black;
+    margin: 20px;
+    text-align: center;
+}
+
+.aa{
+    background-color:cornsilk;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    padding: 30px;
+
+    
+}
+.but{
+    text-align: center;
+    background-color: cornsilk;
+    width: 50%;
+    margin: 0 auto;
+    color: black;
+}
+
+.form{
+    width: 50%;
+    margin: 50px auto;
+
+}
