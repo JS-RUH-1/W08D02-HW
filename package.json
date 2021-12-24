@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/amjadT1000/W08D03-HW/issues"
   },
-  "homepage": "https://github.com/amjadT1000/W08D03-HW#readme"
+  "homepage": "https://github.com/amjadT1000/W08D03-HW#readme",
+  "dependencies": {
+    "mongoose": "^6.1.3"
+  }
 }

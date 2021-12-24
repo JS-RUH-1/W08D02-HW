@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 mongoose.connect(
-  "mongodb+srv://dbAdmin:<password>@cluster0.tve7n.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+  "mongodb+srv://dbAdmin:Twuiq1000@cluster0.tve7n.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 );
 
 const seedBook = require("./book_seed");
